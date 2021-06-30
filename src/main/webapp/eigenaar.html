@@ -2,25 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Placeholder startpagina</title>
+    <title>Title</title>
 </head>
 <body>
-    <form id="loginform">
-        <input type="text" name="username" />
-        <input type="password" name="password" />
-        <input type="button" value="login" id="login" />
-    </form>
-</body>
 <script>
-    document.querySelector("#login").addEventListener("click", login);
+    window.onload(()=>{getData()})
 
-    async function login(event) {
+    async function getData() {
         var formData = new FormData(document.querySelector("#loginform"));
         var encData = new URLSearchParams(formData.entries());
 
         let fetchOptions = {
-            method: "POST",
-            body: encData//headers: {"Authorization": "Bearer "+ window.sessionStorage.getItem("JWT")}
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer "+ window.sessionStorage.getItem("JWT")
+            }
         }
 
         let response = await fetch("rest/auth", fetchOptions);
@@ -32,4 +28,6 @@
         }
     }
 </script>
+
+</body>
 </html>
